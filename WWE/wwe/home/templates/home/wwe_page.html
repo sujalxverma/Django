@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="w-50 p-4 border rounded shadow">
+    <h2 class="mb-4 text-center">Wrestler Information Form</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="id_username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="id_username" name="username" maxlength="100" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="id_email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_wrestler_name" class="form-label">Wrestler Name</label>
+        <input type="text" class="form-control" id="id_wrestler_name" name="wrestler_name" maxlength="100" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_wrestler_image" class="form-label">Wrestler Image</label>
+        <input type="file" class="form-control" id="id_wrestler_image" name="wrestler_image" accept="image/*">
+      </div>
+
+      <div class="mb-3">
+        <label for="id_wrestler_description" class="form-label">Wrestler Description</label>
+        <textarea class="form-control" id="id_wrestler_description" name="wrestler_description" rows="4" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- Wrestler Table -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Wrestler Profiles</h2>
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Wrestler Name</th>
+          <th scope="col">Image</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for wrestler in wrestlers %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ wrestler.username }}</td>
+          <td>{{ wrestler.email }}</td>
+          <td>{{ wrestler.wrestler_name }}</td>
+          <td>
+            {% if wrestler.wrestler_image %}
+              <a data-bs-toggle="modal" data-bs-target="#imgModal{{ wrestler.id }}">
+                <img src="{{ wrestler.wrestler_image.url }}" 
+                     class="img-thumbnail" 
+                     style="width:80px; height:80px; object-fit:cover; cursor:pointer;">
+              </a>
+
+              <!-- Modal for each wrestler -->
+              <div class="modal fade" id="imgModal{{ wrestler.id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body text-center">
+                      <img src="{{ wrestler.wrestler_image.url }}" class="img-fluid rounded">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <span class="text-muted">No image</span>
+            {% endif %}
+          </td>
+          <td>{{ wrestler.wrestler_description|truncatewords:20 }}</td>
+         <td>
+  <a href="{% url 'delete_wrestler' wrestler.id %}" 
+     class="btn btn-danger"
+     onclick="return confirm('Are you sure you want to delete this wrestler?');">
+     Delete
+  </a>
+    <a href="{% url 'update_wrestler' wrestler.id %}" 
+     class="btn btn-success"
+     onclick="return confirm('Are you sure you want to update this wrestler?');">
+     Update
+  </a>
+</td>
+
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-center text-muted">No wrestlers found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

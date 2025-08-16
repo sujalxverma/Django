@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="w-50 p-4 border rounded shadow">
+    <h2 class="mb-4 text-center">Wrestler Information Form</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+    
+      <div class="mb-3">
+        <label for="id_username" class="form-label">Username</label>
+        <input value="{{wrestler.username}}" type="text" class="form-control" id="id_username" name="username" maxlength="100" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_email" class="form-label">Email</label>
+        <input value="{{wrestler.email}}" type="email" class="form-control" id="id_email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_wrestler_name" class="form-label">Wrestler Name</label>
+        <input value="{{wrestler.wrestler_name}}" type="text" class="form-control" id="id_wrestler_name" name="wrestler_name" maxlength="100" required>
+      </div>
+
+      <div class="mb-3">
+  <label for="id_wrestler_image" class="form-label">Wrestler Image</label>
+  {% if wrestler.wrestler_image %}
+    <div class="mb-2">
+      <img src="{{ wrestler.wrestler_image.url }}" 
+           alt="Current Image" 
+           class="img-thumbnail" 
+           style="max-width:150px;">
+      <br>
+      <small class="text-muted">Upload to change the image. Leave blank to keep current.</small>
+    </div>
+  {% endif %}
+  <input type="file" class="form-control" id="id_wrestler_image" name="wrestler_image" accept="image/*">
+</div>
+
+
+      <div class="mb-3">
+        <label for="id_wrestler_description" class="form-label">Wrestler Description</label>
+        <textarea class="form-control" id="id_wrestler_description" name="wrestler_description" rows="4" required> {{wrestler.wrestler_description}} </textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

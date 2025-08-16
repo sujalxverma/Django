@@ -1,0 +1,18 @@
+1. created the project wwe
+2. created the external app 'home'
+3. added the external apps to internal apps
+4. created the public->static folders, so that images can be added after submitting the form, and added the required lines in settings.py
+5. created the home app
+6. created the Home model , where user will eneter the data
+7. develop the templates/base.html in main home directory itself. keep base.html for each app.
+8. make the base.html 
+9. To access image : media/app_name/file_name
+10. created the index.html file_name
+11. for the root page, StartPage is class, which renders index.html
+12. created the wwe_page.html file and routed it to  /wwe_page/
+13. now sending the data from frontend to model
+14. Also mention csrf token inside the form
+15. then inisde the view.py go to its function, then for request.method == POST , create the object for them model
+16. you need to specify the location for the file to be saved in Home class which will accept the data of the form.
+17. create the table to show the data of the models.
+18. create the delete_wrestler function

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VERMA</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+        /* Background color animation from black to white */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            animation: bgColorChange 5s ease infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+        @keyframes bgColorChange {
+            0% {
+                background-color: black;
+                color: white;
+            }
+            100% {
+                background-color: white;
+                color: black;
+            }
+        }
+        /* Welcome text animation */
+        h1 {
+            font-size: 4rem;
+            text-align: center;
+            animation: fadeInScale 3s ease forwards;
+            opacity: 0;
+            transform: scale(0.8);
+            /* Text color will be controlled by background animation */
+        }
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        /* Glowing pulse effect */
+        h1::after {
+            content: "✨";
+            display: inline-block;
+            margin-left: 10px;
+            animation: pulseGlow 2s infinite alternate;
+            color: #555;
+        }
+        @keyframes pulseGlow {
+            from {
+                text-shadow:
+                    0 0 5px #999,
+                    0 0 10px #ccc,
+                    0 0 20px #eee,
+                    0 0 40px #fff;
+            }
+            to {
+                text-shadow:
+                    0 0 10px #666,
+                    0 0 20px #aaa,
+                    0 0 30px #ddd,
+                    0 0 50px #fafafa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Django Site</h1>
+</body>
+</html>
