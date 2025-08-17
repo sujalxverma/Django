@@ -16,3 +16,6 @@
 16. you need to specify the location for the file to be saved in Home class which will accept the data of the form.
 17. create the table to show the data of the models.
 18. create the delete_wrestler function
+19. Now work on authentication.
+20. create models.ForeignKey in Home model.
+29. created the regiter authentication, and user will be created if the user does not exist with that username.

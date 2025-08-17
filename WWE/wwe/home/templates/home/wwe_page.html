@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<nav class="navbar navbar-light bg-white">
+  <div class="container">
+    <a class="btn btn-danger" href="/logout/">Logout</a>
+  </div>
+</nav>
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
   <div class="w-50 p-4 border rounded shadow">
-    <h2 class="mb-4 text-center">Wrestler Information Form</h2>
+    <h2 class="mb-4 text-center">WWE</h2>
     <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
 

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from home.views import StartPage, wwe_page, delete_wrestler, update_wrestler
+from home.views import StartPage, wwe_page, delete_wrestler, update_wrestler, login_page,register_page,logout_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,10 @@ urlpatterns = [
     path('wwe_page/', wwe_page, name='wwe_page'),
     path('delete_wrestler/<id>/', delete_wrestler, name='delete_wrestler'),
     path('update_wrestler/<id>/', update_wrestler, name='update_wrestler'),
+    path('login/', login_page, name='login_page'),
+    path('register/', register_page, name='register_page'),
+    path('logout/', logout_page, name='logout_page'),
+    
 ]
 
 if settings.DEBUG:
